@@ -37,10 +37,11 @@ public class ArgumentStringNullOrEmptyCoreException : ManagerCoreException
         : base($"Argument \"{argumentName}\" is null or empty") { }
 }
 
-//public class CoreArgumentOutOfRangeException : CoreManagerException
-//{
-//    public CoreArgumentOutOfRangeException(string paramName, string message)
-//    {
-        
-//    }
-//}
+public class ArgumentOutOfRangeCoreException : ManagerCoreException
+{
+    public ArgumentOutOfRangeCoreException(string paramName)
+        : base($"Argument {paramName} is out of range.") { }
+
+    public ArgumentOutOfRangeCoreException(string paramName, string message) 
+        : base($"Argument {paramName} is out of range. {message}") { }
+}
