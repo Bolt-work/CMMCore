@@ -1,4 +1,4 @@
-﻿using CMMCore.Managers;
+﻿using CMMCore.Common;
 using Microsoft.Extensions.Logging;
 
 namespace CMMCore.Services;
@@ -21,7 +21,7 @@ public abstract class CoreCommandHandlerBase<T>
             _logger.LogInformation($"Processing command {command.GetType().FullName}");
             Handle(command);
         }
-        catch(CoreManagerException ex)
+        catch(CoreException ex)
         {
             _logger.LogError(ex.ToString());
         }

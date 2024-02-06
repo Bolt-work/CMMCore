@@ -1,6 +1,12 @@
-﻿namespace CMMCore.Repository
+﻿using CMMCore.Common;
+
+namespace CMMCore.Repository
 {
-    public class CoreIdAttributeNotFoundException : Exception
+    public abstract class CoreRepositoryException : CoreException 
+    {
+        public CoreRepositoryException(string message) : base(message) { }
+    }
+    public class CoreIdAttributeNotFoundException : CoreRepositoryException
     {
         public CoreIdAttributeNotFoundException(object obj)
             : base(
