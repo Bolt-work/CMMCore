@@ -1,4 +1,4 @@
-﻿namespace Gotchi.Core.Services;
+﻿namespace CMMCore.Services;
 
 public interface ICoreCommand
 {

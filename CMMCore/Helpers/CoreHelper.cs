@@ -1,4 +1,4 @@
-﻿namespace Gotchi.Core.Helpers;
+﻿namespace CMMCore.Helpers;
 
 public static class CoreHelper
 {

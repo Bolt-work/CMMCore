@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gotchi.Core.Repository;
+namespace CMMCore.Repository;
 
 [AttributeUsage (AttributeTargets.Property,
     AllowMultiple = false,

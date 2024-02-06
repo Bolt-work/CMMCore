@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Gotchi.Core.Helpers;
+namespace CMMCore.Helpers;
 
 public static class GameSettings
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.ExceptionServices;
 
-namespace Gotchi.Core.Services;
+namespace CMMCore.Services;
 
 public class CoreCommandService : ICoreCommandService
 {

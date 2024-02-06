@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Gotchi.Core.Services;
+namespace CMMCore.Services;
 
 public abstract class CoreHostService
 {

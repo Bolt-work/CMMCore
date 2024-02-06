@@ -1,4 +1,4 @@
-﻿namespace Gotchi.Core.Managers;
+﻿namespace CMMCore.Managers;
 
 public class CoreManagerBase
 {

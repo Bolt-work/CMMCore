@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gotchi.Core.Services;
+namespace CMMCore.Services;
 
 public class ServiceExceptionBase : Exception
 {

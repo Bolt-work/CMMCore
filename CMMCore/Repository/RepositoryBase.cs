@@ -1,15 +1,15 @@
-﻿using Gotchi.Core.Models;
+﻿using CMMCore.Models;
 using MongoDB.Driver;
 
 
-namespace Gotchi.Core.Repository;
+namespace CMMCore.Repository;
 public abstract class RepositoryBase<T> where T : CoreModelBase
 {
     protected string _connectionString;
     protected string _databaseName;
     protected string _collectionName;
 
-    public RepositoryBase(RepositorySettings repositorySettings)
+    public RepositoryBase(CoreRepositorySettings repositorySettings)
     {
         _connectionString = repositorySettings.ConnectionString;
         _databaseName = repositorySettings.DatabaseName;

@@ -1,8 +1,8 @@
-﻿using Gotchi.Core.Repository;
+﻿using CMMCore.Repository;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Gotchi.Core.Models
+namespace CMMCore.Models
 {
     public abstract class CoreModelBase
     {

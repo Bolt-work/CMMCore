@@ -1,7 +1,7 @@
-﻿using Gotchi.Core.Managers;
+﻿using CMMCore.Managers;
 using Microsoft.Extensions.Logging;
 
-namespace Gotchi.Core.Services;
+namespace CMMCore.Services;
 
 public abstract class CoreCommandHandlerBase<T>
 {
