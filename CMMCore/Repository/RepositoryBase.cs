@@ -8,20 +8,20 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
     protected string _connectionString;
     protected string _databaseName;
     protected string _collectionName;
+    protected IMongoCollection<T> _mongoCollection;
 
     public RepositoryBase(CoreRepositorySettings repositorySettings)
     {
         _connectionString = repositorySettings.ConnectionString;
         _databaseName = repositorySettings.DatabaseName;
         _collectionName = repositorySettings.CollectionName;
-    }
 
-    protected IMongoCollection<T> ConnectToMongo()
-    {
         var client = new MongoClient(_connectionString);
         var db = client.GetDatabase(_databaseName);
-        return db.GetCollection<T>(_collectionName);
+        _mongoCollection = db.GetCollection<T>(_collectionName);
     }
+
+    protected IMongoCollection<T> ConnectToMongo() => _mongoCollection;
 
     protected string GetCoreId(T model)
     {
@@ -59,8 +59,13 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
 
     protected bool DeleteAllEntries()
     {
-        var filter = Builders<T>.Filter.Where(_ => true);
-        var result = ConnectToMongo().DeleteMany(filter);
+        var result = ConnectToMongo().DeleteMany(FilterAll());
+        return result.IsAcknowledged;
+    }
+
+    protected async Task<bool> DeleteAllEntriesAsync()
+    {
+        var result = await ConnectToMongo().DeleteManyAsync(FilterAll());
         return result.IsAcknowledged;
     }
 
@@ -128,6 +133,7 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
         return await ConnectToMongo().Find(Filter(key, value)).ToListAsync();
     }
 
+    protected FilterDefinition<T> FilterAll() => Builders<T>.Filter.Where(_ => true);
     protected FilterDefinition<T> FilterId(string id) => Filter("Id", id);
     protected FilterDefinition<T> Filter(string key, string id)
     {

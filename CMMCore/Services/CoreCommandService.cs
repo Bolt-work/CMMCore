@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 
 namespace CMMCore.Services;
@@ -9,9 +10,12 @@ public class CoreCommandService : ICoreCommandService
     private const string _commandHandlerMethodName = "HandlerInvoke";
     private IServiceProvider _serviceProvider;
 
-    public CoreCommandService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
+    public CoreCommandService(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
 
-    public void ProcessX(ICoreCommand command)
+    public void Process(ICoreCommand command)
     {
         try
         {
@@ -38,7 +42,8 @@ public class CoreCommandService : ICoreCommandService
     private void ProcessInternal(ICoreCommand command)
     {
         var commandName = command.GetType().FullName;
-        var commandHandlerType = Type.GetType(commandName + _commandHandlerSuffix);
+        var assemblyName = command.GetType().Assembly.FullName;
+        var commandHandlerType = Type.GetType(commandName + _commandHandlerSuffix + "," + assemblyName);
         commandHandlerType = commandHandlerType ?? throw new CommandHandlerNotFoundException(commandName);
 
         var commandHandler = _serviceProvider.GetRequiredService(commandHandlerType);
