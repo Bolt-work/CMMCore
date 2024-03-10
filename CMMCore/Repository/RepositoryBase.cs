@@ -50,6 +50,14 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
         return result.IsAcknowledged;
     }
 
+    protected bool UpsertManyEntry(IEnumerable<T> models)
+    {
+        foreach (var model in models)
+            UpsertEntry(model);
+
+        return true;
+    }
+
     protected bool DeleteEntry(string? id)
     {
         id = id ?? throw new ArgumentNullException(id);
