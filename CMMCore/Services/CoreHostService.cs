@@ -5,8 +5,8 @@ namespace CMMCore.Services;
 
 public abstract class CoreHostService
 {
-    protected IHost _host;
-    protected IServiceScope _serviceScope;
+    protected IHost? _host;
+    protected IServiceScope? _serviceScope;
     protected IServiceProvider _serviceProvider;
 
     public CoreHostService(string[] args)
