@@ -50,6 +50,13 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
         return result.IsAcknowledged;
     }
 
+    protected async Task<bool> UpsertEntryAsync(T model)
+    {
+        var id = GetCoreId(model);
+        var result = await ConnectToMongo().ReplaceOneAsync(FilterId(id), model, new ReplaceOptions { IsUpsert = true });
+        return result.IsAcknowledged;
+    }
+
     protected bool UpsertManyEntry(IEnumerable<T> models)
     {
         foreach (var model in models)
