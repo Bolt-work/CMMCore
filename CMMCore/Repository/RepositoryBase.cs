@@ -27,7 +27,7 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
     {
         if (model is null)
             throw new ArgumentNullException("Mandatory parameter", nameof(model));
-        
+
         foreach (var property in model.GetType().GetProperties())
         {
             foreach (var attribute in property.GetCustomAttributes(true))
@@ -94,10 +94,17 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
         return await ConnectToMongo().Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 
+    // TODO: Rename this to EntryWithIdExists 
     protected bool EntryExists(string id)
     {
         return ConnectToMongo().Find(x => x.Id == id).Any();
     }
+
+    protected async Task<bool> EntryWithIdExistsAsync(string id) 
+    {
+        return await ConnectToMongo().Find(x => x.Id == id).AnyAsync();
+    }
+
 
     protected bool EntryExistsByKey(string key, string value)
     {
@@ -109,7 +116,7 @@ public abstract class RepositoryBase<T> where T : CoreModelBase
         return await ConnectToMongo().Find(Filter(key, value)).AnyAsync();
     }
 
-    protected bool EntriesAny() 
+    protected bool EntriesAny()
     {
         return ConnectToMongo().Find(_ => true).Any();
     }

@@ -12,6 +12,10 @@
 *.user
 *.sln.docstates
 
+# -- Secret json files -- 
+**secret*.json
+**Secret*.json
+
 # Build results
 [Dd]ebug/
 [Rr]elease/

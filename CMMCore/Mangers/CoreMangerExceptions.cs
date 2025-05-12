@@ -19,6 +19,12 @@ public class ParameterModelIsNullCoreException<T> : ManagerCoreException
         : base($"Parameter Model is null, Type expected : {typeof(T).FullName}") { }
 }
 
+public class ParameterEntityIsNullCoreException<T> : ManagerCoreException
+{
+    public ParameterEntityIsNullCoreException()
+        : base($"Parameter Entity is null, Type expected : {typeof(T).FullName}") { }
+}
+
 public class ModelNotFoundCoreException<T> : ManagerCoreException
 {
     public ModelNotFoundCoreException(string identifier)
@@ -35,6 +41,12 @@ public class ArgumentStringNullOrEmptyCoreException : ManagerCoreException
 {
     public ArgumentStringNullOrEmptyCoreException(string argumentName)
         : base($"Argument \"{argumentName}\" is null or empty") { }
+}
+
+public class IdArgumentStringIsNullOrEmptyCoreException<T> : CoreException where T : CoreIdentifier<T>, new()
+{
+    public IdArgumentStringIsNullOrEmptyCoreException()
+        : base($" Id Argument is null or empty: type {nameof(T)}") { }
 }
 
 public class ArgumentOutOfRangeCoreException : ManagerCoreException

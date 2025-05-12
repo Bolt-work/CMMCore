@@ -5,7 +5,7 @@ namespace CMMCore.Services;
 
 public abstract class CoreCommandHandlerBase<T>
 {
-    ILogger<CoreCommandHandlerBase<T>> _logger;
+    protected ILogger<CoreCommandHandlerBase<T>> _logger;
     public CoreCommandHandlerBase(ILogger<CoreCommandHandlerBase<T>> logger)
     {
         _logger = logger;

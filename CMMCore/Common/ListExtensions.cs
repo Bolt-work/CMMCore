@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 
 namespace CMMCore.Common;
 
